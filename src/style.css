@@ -128,7 +128,7 @@ html, body {
 /* --- UI共通のガラス質感 --- */
 .glass-ui {
   background: rgba(33, 42, 74, 0.4);/* 暗めの半透明 */
-  backdrop-filter: blur(6px);        /* ガラスのぼかし */
+  backdrop-filter: blur(6px) !important;        /* ガラスのぼかし */
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
