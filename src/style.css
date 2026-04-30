@@ -718,4 +718,9 @@ html, body {
     font-size: 22px;
     padding: 8px;
   }
+
+  .glass-ui {   
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px) !important;   
+}
 }
