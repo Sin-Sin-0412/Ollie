@@ -59,14 +59,14 @@ function adjustCamera(width, height) {
     desktop: {
       fov: 35,
       x: -5.5,
-      y: 3.4,
+      y: 3.2,
       z: 9,
     },
 
     ultrawide: {
       fov: 30,
       x: -5.5,
-      y: 3.4,
+      y: 3.2,
       z: 9,
     },
   };
@@ -129,7 +129,7 @@ function adjustCamera(width, height) {
   camera.position.set(targetX, targetY, targetZ);
 
   // ルックアット
-  camera.lookAt(0.5, 2, 0);
+  camera.lookAt(0.5, 2.5, 0);
 
   // 行列を更新（これを忘れると反映されない）
   camera.updateProjectionMatrix();
