@@ -27,8 +27,8 @@ if (!currentRoomId) {
   currentRoomId = randomRoomNum.toString();
 
   // ブラウザのURL欄をこっそり書き換える（ページはリロードされません）
-  const newUrl = `${window.location.pathname}?room=${currentRoomId}${window.location.search.includes("key=ollie_s30") ? "&key=ollie_s30" : ""}`;
-  window.history.replaceState(null, "", newUrl);
+  const adminKey = import.meta.env.VITE_ADMIN_KEY;
+  const newUrl = `${window.location.pathname}?room=${currentRoomId}${window.location.search.includes(`key=${adminKey}`) ? `&key=${adminKey}` : ""}`;  window.history.replaceState(null, "", newUrl);
 }
 //! 自動振り分け機能①
 
