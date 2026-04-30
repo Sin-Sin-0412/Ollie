@@ -692,7 +692,7 @@ html, body {
     max-height: none;
 
     /* 透け感の調整：より薄く、よりクリアに */
-    background: rgba(20, 25, 35, 0.2); /* 0.4から0.2へ */
+    background: #14192369; /* 0.4から0.2へ */
     backdrop-filter: blur(3px);        /* 6pxから3pxへ */
     -webkit-backdrop-filter: blur(3px);
     
