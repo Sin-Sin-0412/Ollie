@@ -174,10 +174,37 @@ html, body {
 #chat-toggle:hover { background: rgba(255, 255, 255, 0.1); }
 
 /* --- チャットウィンドウ --- */
-#chat-window {
+#chat-window-wrapper {
   position: absolute;
-  bottom: 80px; /* トグルボタンの少し上 */
+  bottom: 80px;
   left: 20px;
+  z-index: 10;
+  
+  /* 状態の初期値：透明、ぼやけ、少し奥にある */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(20px) hue-rotate(360deg);
+  transform: scale(0.98);
+  
+  /* アニメーション設定 */
+  transition: 
+    opacity 1s cubic-bezier(0.2, 0, 0.3, 1),
+    filter 1.3s ease-out,
+    transform 1s cubic-bezier(0.2, 0, 0.3, 1),
+    visibility 0s linear 1s;
+}
+
+#chat-window-wrapper.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: none; /* 親のフィルターを消すことで、子のbackdrop-filterが正常に動く */
+  transform: scale(1);
+  transition-delay: 0s;
+}
+
+#chat-window {
   width: 450px;
   height: 700px;
   min-width: 250px;
@@ -185,21 +212,8 @@ html, body {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  z-index: 10;
-  resize: both; /* 右下ドラッグでサイズ変更可能に */
   overflow: hidden;
-  /* 状態の初期値：透明、ぼやけ、少し奥にある、クリック不可 */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  filter: blur(20px) hue-rotate(360deg); /* 霧の中の暗がり */
-  transform: scale(0.98); /* わずかに大きく（浮かび上がる感覚） */
-  /* すべての変化をゆっくり滑らかに */
-  transition: 
-    opacity 1s cubic-bezier(0.2, 0, 0.3, 1),
-    filter 1.3s ease-out,
-    transform 1s cubic-bezier(0.2, 0, 0.3, 1),
-    visibility 0s linear 1s; /* 消えるときに1.2秒待ってから非表示にする */
+  resize: both; /* サイズ変更機能はここ */
 }
 
 #chat-window.show {
