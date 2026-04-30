@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- 3. チャットウィンドウの開閉ロジック ---
-  const chatWindow = document.getElementById("chat-window-wrapper");
+  const chatWindow = document.getElementById("chat-window");
   const chatToggleBtn = document.getElementById("chat-toggle");
 
   chatToggleBtn.addEventListener("click", () => {
