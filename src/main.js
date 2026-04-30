@@ -41,7 +41,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.22;
+renderer.toneMappingExposure = 0.2;
 
 //! カメラ調整
 function adjustCamera(width, height) {
@@ -230,7 +230,7 @@ const params = {
   noiseAmount: 0.07,
 
   bloomEnabled: true,
-  bloomStrength: 0.29,
+  bloomStrength: 0.35,
   bloomRadius: 0.1,
   bloomThreshold: 0.01,
 
@@ -240,7 +240,7 @@ const params = {
   dofMaxblur: 0.0048,
 
   toneMapping: THREE.ACESFilmicToneMapping,
-  toneMappingExposure: 0.22,
+  toneMappingExposure: 0.42,
 };
 
 // ウォームトーン
@@ -248,7 +248,7 @@ const WarmToneShader = {
   uniforms: {
     tDiffuse: { value: null },
     intensity: { value: 3 },
-    uNoiseAmount: { value: 0.05 },
+    uNoiseAmount: { value: 0.07 },
     uTime: { value: 0.0 },
     uResolution: { value: new THREE.Vector2(sizes.width, sizes.height) },
   },
