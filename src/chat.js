@@ -484,17 +484,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    //* NGワードチェック
-    const isNG = ngWordsList.some((ngWord) => content.includes(ngWord));
-    if (isNG) {
-      alert("不適切な発言が含まれているため送信できません。");
-      return;
-    }
-
-    //* NGワードチェック（名前欄）
-    const isNameNG = ngWordsList.some((ngWord) => name.includes(ngWord));
+    //* NGワードチェック（名前欄・判定前にスペースや一部の記号を消してチェック）
+    const checkName = name.replace(/[\s　.,._-]/g, "");
+    const isNameNG = ngWordsList.some((ngWord) => checkName.includes(ngWord));
     if (isNameNG) {
       alert("名前に不適切な言葉が含まれているため送信できません。");
+      return;
+    }
+    //* NGワードチェック（メッセージ本文・判定前にスペースや一部の記号を消してチェック）
+    const checkContent = content.replace(/[\s　.,._-]/g, "");
+    const isNG = ngWordsList.some((ngWord) => checkContent.includes(ngWord));
+    if (isNG) {
+      alert("不適切な発言が含まれているため送信できません。");
       return;
     }
 
