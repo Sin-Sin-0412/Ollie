@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //* 名前の文字数チェック（15文字まで）
-    if (name !== "名前は10文字以内です" && name.length > 10) {
+    if (name !== "名無し" && name.length > 10) {
       alert("名前は10文字以内にしてください。");
       return;
     }
