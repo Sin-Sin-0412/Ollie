@@ -28,7 +28,8 @@ if (!currentRoomId) {
 
   // ブラウザのURL欄をこっそり書き換える（ページはリロードされません）
   const adminKey = import.meta.env.VITE_ADMIN_KEY;
-  const newUrl = `${window.location.pathname}?room=${currentRoomId}${window.location.search.includes(`key=${adminKey}`) ? `&key=${adminKey}` : ""}`;  window.history.replaceState(null, "", newUrl);
+  const newUrl = `${window.location.pathname}?room=${currentRoomId}${window.location.search.includes(`key=${adminKey}`) ? `&key=${adminKey}` : ""}`;
+  window.history.replaceState(null, "", newUrl);
 }
 //! 自動振り分け機能①
 
@@ -476,10 +477,24 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("今は定型文しか送れないよ！");
       return;
     }
+
+    //* 名前の文字数チェック（15文字まで）
+    if (name !== "名無し" && name.length > 15) {
+      alert("名前は15文字以内にしてください。");
+      return;
+    }
+
     //* NGワードチェック
     const isNG = ngWordsList.some((ngWord) => content.includes(ngWord));
     if (isNG) {
       alert("不適切な発言が含まれているため送信できません。");
+      return;
+    }
+
+    //* NGワードチェック（名前欄）
+    const isNameNG = ngWordsList.some((ngWord) => name.includes(ngWord));
+    if (isNameNG) {
+      alert("名前に不適切な言葉が含まれているため送信できません。");
       return;
     }
 
