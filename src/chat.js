@@ -464,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function sendMessage() {
-    const name = nameInput.value.trim() || "名無し";
+    const name = nameInput.value.trim() || "ZOMRADE";
     const content = messageInput.value.trim();
     if (!content) return;
 
@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //* 名前の文字数チェック（15文字まで）
-    if (name !== "名無し" && name.length > 10) {
+    if (name !== "ZOMRADE" && name.length > 10) {
       alert("名前は10文字以内にしてください。");
       return;
     }
@@ -604,7 +604,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .subscribe(async (status) => {
       if (status === "SUBSCRIBED") {
         await chatChannel.track({
-          name: nameInput.value || "名無し",
+          name: nameInput.value || "ZOMRADE",
           online_at: new Date().toISOString(),
         });
       }
