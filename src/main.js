@@ -248,7 +248,7 @@ const WarmToneShader = {
   uniforms: {
     tDiffuse: { value: null },
     intensity: { value: 3 },
-    uNoiseAmount: { value: 0.07 },
+    uNoiseAmount: { value: 0.05 },
     uTime: { value: 0.0 },
     uResolution: { value: new THREE.Vector2(sizes.width, sizes.height) },
   },
