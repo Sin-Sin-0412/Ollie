@@ -5,23 +5,31 @@ let rainSource;
 let rainGain; // フェードアウトさせるためにGainをグローバルに保持
 let carTimer;
 let isPlaying = false;
+//* ArrayBufferをページ読み込み時に先取りしておく
+let rainArrayBuffer;
+let carArrayBuffer;
 
 const iconOn = `<img src="/image/kasa.svg" width="18" height="18" alt="">`;
 const iconOff = `<img src="/image/kasa-off.svg" width="18" height="18" alt="">`;
 
 const soundToggleBtn = document.getElementById("sound-toggle");
 
-async function initAudio() {
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  
-  rainBuffer = await loadAudio("/audio/rain3.mp3");
-  carBuffer = await loadAudio("/audio/car.mp3");
+async function prefetchAudio() {
+  const [rainRes, carRes] = await Promise.all([
+    fetch("/audio/rain3.mp3"),
+    fetch("/audio/car.mp3")
+  ]);
+  rainArrayBuffer = await rainRes.arrayBuffer();
+  carArrayBuffer = await carRes.arrayBuffer();
 }
 
-async function loadAudio(url) {
-  const response = await fetch(url);
-  const arrayBuffer = await response.arrayBuffer();
-  return await audioCtx.decodeAudioData(arrayBuffer);
+const prefetchPromise = prefetchAudio();
+
+async function initAudio() {
+  await prefetchPromise;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  rainBuffer = await audioCtx.decodeAudioData(rainArrayBuffer);
+  carBuffer = await audioCtx.decodeAudioData(carArrayBuffer);
 }
 
 // --- 2. 雨の音（フェードイン付き）---
